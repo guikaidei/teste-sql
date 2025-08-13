@@ -1,18 +1,22 @@
+import os
 import pymssql
+from dotenv import load_dotenv
 
-server = 'IP_DO_SERVIDOR'  # Ex: '192.168.0.10'
-port = 1433
-database = 'NOME_DA_BASE'
-username = 'USUARIO'
-password = 'SENHA'
+# Carregar variáveis do .env
+load_dotenv()
+
+server = os.getenv("DB_SERVER")
+database = os.getenv("DB_DATABASE")
+username = os.getenv("DB_USERNAME")
+password = os.getenv("DB_PASSWORD")
 
 try:
     conn = pymssql.connect(
         server=server,
-        port=port,
         user=username,
         password=password,
         database=database,
+        port=int(port) if port else 1433,
         login_timeout=5
     )
     cursor = conn.cursor()
