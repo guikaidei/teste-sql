@@ -9,6 +9,7 @@ server = os.getenv("DB_SERVER")
 database = os.getenv("DB_DATABASE")
 username = os.getenv("DB_USERNAME")
 password = os.getenv("DB_PASSWORD")
+port = os.getenv("DB_PORT", "1433")  # Default to 1433 if not set
 
 try:
     conn = pymssql.connect(
